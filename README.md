@@ -11,6 +11,7 @@ this script assumes taht the deployment configuration files are named in the fol
 
 
 USAGE:
+
 	deploy.sh <environment_name> <upload|encrypt|decrypt>
 
 
