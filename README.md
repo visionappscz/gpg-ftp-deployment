@@ -11,28 +11,18 @@ this script assumes taht the deployment configuration files are named in the fol
 
 
 USAGE:
-
-deploy.sh <environment_name> <upload|encrypt|decrypt>
+	deploy.sh <environment_name> <upload|encrypt|decrypt>
 
 
 EXAMPLES:
 
-Sync with server:
-
-(requires file: deployment.preview.ini.gpg)
-
-deploy.sh preview upload
+	Sync with server (requires file: deployment.preview.ini.gpg):
+		deploy.sh preview upload
 
 
-Decrypt file with production environment credentials:
-
-(requires file: deployment.production.ini.gpg)
-
-deploy.sh production decrypt
+	Decrypt file with production environment credentials (requires file: deployment.production.ini.gpg):
+		deploy.sh production decrypt
 
 
-Encrypt file with testing environment credentials:
-
-(requires files: deployment.testing.ini and deployment.recepients)
-
-deploy.sh testing encrypt
+	Encrypt file with testing environment credentials (requires files: deployment.testing.ini and deployment.recepients):
+		deploy.sh testing encrypt
