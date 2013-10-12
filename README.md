@@ -9,6 +9,24 @@ The encryption is handled by gpg and all who are expected to use the encrypted f
 
 this script assumes taht the deployment configuration files are named in the following manner: "deployment.<name_of_environment>.ini[.gpg]". The name of the environment is opassed in as a first argument, the desired action as a second argument.
 
+DEPENDENCIES:
+
+php, gpg, composer
+
+INSTALLATION:
+
+1/ Put it into your favorite folder for scripts and such
+
+	git clone git@github.com:mbohal/gpg-ftp-deployment.git
+	
+2/ Navigate to where the deploy.sh script is located
+
+	cd folder_where_the_script_is
+
+3/ Install dependencies
+	
+	composer install
+
 
 USAGE:
 
@@ -17,13 +35,16 @@ USAGE:
 
 EXAMPLES:
 
-	Sync with server (requires file: deployment.preview.ini.gpg):
-		deploy.sh preview upload
+Sync with server (requires file: deployment.preview.ini.gpg):
+	
+	deploy.sh preview upload
 
 
-	Decrypt file with production environment credentials (requires file: deployment.production.ini.gpg):
-		deploy.sh production decrypt
+Decrypt file with production environment credentials (requires file: deployment.production.ini.gpg):
+	
+	deploy.sh production decrypt
 
 
-	Encrypt file with testing environment credentials (requires files: deployment.testing.ini and deployment.recepients):
-		deploy.sh testing encrypt
+Encrypt file with testing environment credentials (requires files: deployment.testing.ini and deployment.recepients):
+	
+	deploy.sh testing encrypt
