@@ -1,0 +1,11 @@
+{
+	"repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:mbohal/ftp-deployment.git"
+        }
+    ],
+	"require": {
+		"dg/ftp-deployment": "dev-master"
+	}
+}

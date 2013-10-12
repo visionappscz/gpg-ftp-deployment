@@ -1,0 +1,62 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "3263c4c9d1643566f0210d61a12c28d7",
+    "packages": [
+        {
+            "name": "dg/ftp-deployment",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mbohal/ftp-deployment.git",
+                "reference": "788dc98f2aed2e205c49753e5032ee62e7618e0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mbohal/ftp-deployment/zipball/788dc98f2aed2e205c49753e5032ee62e7618e0b",
+                "reference": "788dc98f2aed2e205c49753e5032ee62e7618e0b",
+                "shasum": ""
+            },
+            "type": "tool",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "http://davidgrudl.com"
+                }
+            ],
+            "description": "A tool for automated deployment of web applications to an FTP server.",
+            "homepage": "https://github.com/dg/ftp-deployment",
+            "keywords": [
+                "deployment",
+                "ftp"
+            ],
+            "support": {
+                "source": "https://github.com/mbohal/ftp-deployment/tree/master"
+            },
+            "time": "2013-10-12 09:30:27"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "dg/ftp-deployment": 20
+    },
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
+}
