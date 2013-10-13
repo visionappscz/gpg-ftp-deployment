@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 
-WRAPPER_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WRAPPER_DIR=$(dirname $(readlink -e $BASH_SOURCE))
 SCRIPT_PATH="$WRAPPER_DIR/vendor/dg/ftp-deployment/Deployment/deployment.php"
 RECEPIENTS=()
 RECEPIENTS_FILE="deployment.recepients"
