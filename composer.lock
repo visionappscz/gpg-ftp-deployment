@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3263c4c9d1643566f0210d61a12c28d7",
+    "hash": "0621f36d36fc21d77ed129d85a86accd",
     "packages": [
         {
             "name": "dg/ftp-deployment",
-            "version": "dev-master",
+            "version": "v1.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mbohal/ftp-deployment.git",
-                "reference": "788dc98f2aed2e205c49753e5032ee62e7618e0b"
+                "url": "https://github.com/dg/ftp-deployment.git",
+                "reference": "v1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mbohal/ftp-deployment/zipball/788dc98f2aed2e205c49753e5032ee62e7618e0b",
-                "reference": "788dc98f2aed2e205c49753e5032ee62e7618e0b",
+                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/v1.2",
+                "reference": "v1.2",
                 "shasum": ""
             },
             "type": "tool",
@@ -38,9 +38,10 @@
                 "ftp"
             ],
             "support": {
-                "source": "https://github.com/mbohal/ftp-deployment/tree/master"
+                "source": "https://github.com/dg/ftp-deployment/tree/v1.2",
+                "issues": "https://github.com/dg/ftp-deployment/issues"
             },
-            "time": "2013-10-12 09:30:27"
+            "time": "2013-12-12 23:22:00"
         }
     ],
     "packages-dev": [
@@ -50,9 +51,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "dg/ftp-deployment": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": [
 
     ],

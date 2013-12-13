@@ -2,10 +2,10 @@
 	"repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:mbohal/ftp-deployment.git"
+            "url": "git@github.com:dg/ftp-deployment.git"
         }
     ],
 	"require": {
-		"dg/ftp-deployment": "dev-master"
+		"dg/ftp-deployment": "1.2"
 	}
 }
