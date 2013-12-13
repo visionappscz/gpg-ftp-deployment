@@ -20,9 +20,9 @@ done < $RECEPIENTS_FILE
 
 
 #check if the user input is valid
-if [ "$#" -ne 2 ]
+if [ "$#" -lt 2 ]
 then
-	echo "Usage: deploy.sh <environment_name> <upload|encrypt|decrypt>"
+	echo "Usage: deploy.sh <environment_name> <upload|encrypt|decrypt> [--test]"
 	exit 1
 fi
 
@@ -39,6 +39,12 @@ then
 	exit 1
 fi
 
+if [ "$3" !== "--test" ]
+then
+	echo "The only valid option is --test"
+	exit 1
+fi
+
 
 #peroform action
 if [[ "$2" = "upload" ]]
@@ -49,7 +55,7 @@ then
 		exit 1
 	fi
 	gpg -d $INI_FILENAME.gpg > $INI_FILENAME
-	php $SCRIPT_PATH $INI_FILENAME
+	php $SCRIPT_PATH $INI_FILENAME $3
 	rm $INI_FILENAME
 
 
