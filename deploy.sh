@@ -39,7 +39,7 @@ then
 	exit 1
 fi
 
-if [ "$3" !== "--test" ]
+if [ "$3" != "--test" ]
 then
 	echo "The only valid option is --test"
 	exit 1
