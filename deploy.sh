@@ -7,7 +7,9 @@ RECIPIENTS=()
 RECIPIENTS_FILE="deployment.recipients"
 TEST_OPTION_STRING=""
 COMMANDS=("upload" "encrypt" "decrypt")
-HELP_TEXT="Usage: deploy.sh [options] environment action"
+HELP_TEXT="Usage: deploy.sh [options] <environment_name> <upload|encrypt|decrypt> \n\n
+    -t              Run in test mode. nofiles will be changed. \n\n
+    -r FILENAME     Specifies custom recipients file. Recipients for whom to encrypt the ini file are listed in FILENAME.\n"
 
 # parse options
 while getopts :r:th opt
@@ -20,7 +22,7 @@ do
             TEST_OPTION_STRING="--test"
             ;;
         h)
-            echo $HELP_TEXT
+            echo -e $HELP_TEXT
             exit
             ;;
         \?)
@@ -37,7 +39,7 @@ done
 # check if the required positional arguments are present
 if [ $(( $# - $OPTIND )) -lt 1 ]
 then
-    echo $HELP_TEXT
+    echo -e $HELP_TEXT
     exit 1
 fi
 

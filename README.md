@@ -5,9 +5,11 @@ A wrapper script for ftp-deployment tool.
 
 The aim of this script is to provide ondemand encryption and decryption of credentials for use by the ftp-deployment tool. Once encrypted the files can then by shared over git or such.
 
-The encryption is handled by gpg and all who are expected to use the encrypted file must have their certificate added at encryption time. The recepients of the encrypted files are listed in file named deployment.recepients at the same location as the deployment configuration files.
+The encryption is handled by gpg and all who are expected to use the encrypted file must have their certificate added at encryption time. The recepients of the encrypted files are listed in file named deployment.recipients at the same location as the deployment configuration files. A custom location of the recipients file can be entered with the -r option.
 
-this script assumes taht the deployment configuration files are named in the following manner: "deployment.<name_of_environment>.ini[.gpg]". The name of the environment is opassed in as a first argument, the desired action as a second argument.
+This script assumes taht the deployment configuration files are named in the following manner: "deployment.<name_of_environment>.ini[.gpg]". The name of the environment is passed in as a first argument, the desired action as a second argument.
+
+The upload action can be run in test mode with the -t option. No files will be changed, but it will be shown what would have had happend.
 
 DEPENDENCIES:
 
@@ -17,34 +19,36 @@ INSTALLATION:
 
 1/ Put it into your favorite folder for scripts and such
 
-	git clone git@github.com:mbohal/gpg-ftp-deployment.git
+    git clone git@github.com:mbohal/gpg-ftp-deployment.git
 
 2/ Navigate to where the deploy.sh script is located
 
-	cd folder_where_the_script_is
+    cd folder_where_the_script_is
 
 3/ Install dependencies
 
-	composer install
+    composer install
 
 
 USAGE:
 
-	deploy.sh <environment_name> <upload|encrypt|decrypt>
+    deploy.sh [options] <environment_name> <upload|encrypt|decrypt>
+    -t              Run in test mode
+    -r FILENAME     Recipients for whom to encrypt the ini files are listed in FILENAME
 
 
 EXAMPLES:
 
 Sync with server (requires file: deployment.preview.ini.gpg):
 
-	deploy.sh preview upload
+    deploy.sh preview upload
 
 
 Decrypt file with production environment credentials (requires file: deployment.production.ini.gpg):
 
-	deploy.sh production decrypt
+    deploy.sh production decrypt
 
 
 Encrypt file with testing environment credentials (requires files: deployment.testing.ini and deployment.recepients):
 
-	deploy.sh testing encrypt
+    deploy.sh testing encrypt
