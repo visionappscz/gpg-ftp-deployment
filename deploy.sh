@@ -65,6 +65,10 @@ then
         exit 1
     fi
     $(gpg -d $INI_FILENAME.gpg > $INI_FILENAME)
+
+    # delete unencrypted ini file on interrupt
+    trap '{ rm $INI_FILENAME; exit 1; }' INT
+
     php $SCRIPT_PATH $INI_FILENAME $TEST_OPTION_STRING
     rm $INI_FILENAME
     exit
