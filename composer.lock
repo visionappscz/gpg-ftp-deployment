@@ -3,22 +3,25 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0621f36d36fc21d77ed129d85a86accd",
+    "hash": "becc3fc91e0482a7da31ed5c7b858770",
     "packages": [
         {
             "name": "dg/ftp-deployment",
-            "version": "v1.2",
+            "version": "v1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/ftp-deployment.git",
-                "reference": "v1.2"
+                "reference": "2e201715dfc75b0ee303051c96c396a3f03830f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/v1.2",
-                "reference": "v1.2",
+                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/2e201715dfc75b0ee303051c96c396a3f03830f2",
+                "reference": "2e201715dfc75b0ee303051c96c396a3f03830f2",
                 "shasum": ""
             },
+            "bin": [
+                "Deployment/deployment"
+            ],
             "type": "tool",
             "license": [
                 "BSD-3-Clause",
@@ -38,10 +41,10 @@
                 "ftp"
             ],
             "support": {
-                "source": "https://github.com/dg/ftp-deployment/tree/v1.2",
+                "source": "https://github.com/dg/ftp-deployment/tree/v1.3",
                 "issues": "https://github.com/dg/ftp-deployment/issues"
             },
-            "time": "2013-12-12 23:22:00"
+            "time": "2014-03-10 18:34:58"
         }
     ],
     "packages-dev": [
