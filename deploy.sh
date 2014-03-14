@@ -1,107 +1,149 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 
 WRAPPER_DIR=$(dirname $(readlink -e $BASH_SOURCE))
 SCRIPT_PATH="$WRAPPER_DIR/vendor/dg/ftp-deployment/Deployment/deployment.php"
-RECEPIENTS=()
-RECEPIENTS_FILE="deployment.recepients"
+RECIPIENTS=()
+RECIPIENTS_FILE="deployment.recipients"
+TEST_OPTION_STRING=""
+COMMANDS=("upload" "encrypt" "decrypt")
 
-
-#Load email addresses of people for whom the script should be encrypted
-#The gpg public keys have to be present in the system
-#The list is a file with one email per line and NEW LINE AT THE END
-while read LINE
+# parse options
+while getopts :r:t opt
 do
-	if [ ! -z "$LINE" ]
-	then
-		RECEPIENTS+=("$LINE")
-	fi
-done < $RECEPIENTS_FILE
+    case $opt in
+        r)
+            RECIPIENTS_FILE=$OPTARG
+            ;;
+        t)
+            TEST_OPTION_STRING="--test"
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG"
+            exit 1
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument."
+            exit 1
+            ;;
+  esac
+done
 
-
-#check if the user input is valid
-if [ "$#" -lt 2 ]
+# check if the required positional arguments are present
+if [ $(( $# - $OPTIND )) -lt 1 ]
 then
-	echo "Usage: deploy.sh <environment_name> <upload|encrypt|decrypt> [--test]"
-	exit 1
+    echo "Usage: deploy.sh [options] environment action"
+    exit 1
 fi
 
-INI_FILENAME="deployment.$1.ini"
+# set the positional arguments
+ENVIRONMENT=${@:$OPTIND:1}
+ACTION=${@:$OPTIND+1:1}
+
+# check weather the deployment ini file exists
+INI_FILENAME="deployment.$ENVIRONMENT.ini"
 if [ ! -f "$INI_FILENAME" ] && [ ! -f "$INI_FILENAME.gpg" ]
 then
-	echo "There is no file $INI_FILENAME or $INI_FILENAME.gpg. Nothing to do."
-	exit 1
+    echo "There is no file $INI_FILENAME or $INI_FILENAME.gpg. Nothing to do."
+    exit 1
 fi
 
-if [ "$2" != "upload" ] && [ "$2" != "decrypt" ] && [ "$2" != "encrypt" ]
+# check weather the action is valid
+if [ "$ACTION" != "upload" ] && [ "$ACTION" != "decrypt" ] && [ "$ACTION" != "encrypt" ]
 then
-	echo "Valid commands are upload, decrypt and encrypt"
-	exit 1
-fi
-
-if [ "$3" != "--test" ] && [ "$#" -gt 2 ]
-then
-	echo "The only valid option is --test"
-	exit 1
+    echo "Valid commands are upload, decrypt and encrypt"
+    exit 1
 fi
 
 
 #peroform action
-if [[ "$2" = "upload" ]]
+if [[ "$ACTION" = "upload" ]]
 then
-	if [ ! -f "$INI_FILENAME.gpg" ]
-	then
-		echo "Nothing to decrypt. There must be a $INI_FILENAME.gpg in this folder"
-		exit 1
-	fi
-	gpg -d $INI_FILENAME.gpg > $INI_FILENAME
-	php $SCRIPT_PATH $INI_FILENAME $3
-	rm $INI_FILENAME
+    if [ ! -f "$INI_FILENAME.gpg" ]
+    then
+        echo "Nothing to decrypt. There must be a $INI_FILENAME.gpg in this folder"
+        exit 1
+    fi
+    $(gpg -d $INI_FILENAME.gpg > $INI_FILENAME)
+    php $SCRIPT_PATH $INI_FILENAME $TEST_OPTION_STRING
+    rm $INI_FILENAME
+    exit
 
 
-elif [[ "$2" = "decrypt" ]]
+elif [[ "$ACTION" = "decrypt" ]]
 then
-	if [ ! -f "$INI_FILENAME.gpg" ]
-	then
-		echo "Nothing to decrypt. There must be a $INI_FILENAME.gpg in this folder"
-		exit 1
-	fi
+    if [ ! -f "$INI_FILENAME.gpg" ]
+    then
+        echo "Nothing to decrypt. There must be a $INI_FILENAME.gpg in this folder"
+        exit 1
+    fi
 
-	if [ -f $INI_FILENAME ]
-	then
-		rm $INI_FILENAME
-	fi
+    if [ -f $INI_FILENAME ]
+    then
+        rm $INI_FILENAME
+    fi
 
-	gpg -d $INI_FILENAME.gpg > $INI_FILENAME
-	if [ -s $INI_FILENAME ]
-	then
-		rm $INI_FILENAME.gpg
-	else
-		rm $INI_FILENAME
-		echo "The deployment ini file could not be decrypted"
-	fi
+    $(gpg -d $INI_FILENAME.gpg > $INI_FILENAME)
+    RET_CODE=$?
+    if [ "$RET_CODE" = 0 ]
+    then
+        rm $INI_FILENAME.gpg
+        echo "File $INI_FILENAME was decrypted"
+        exit
+    else
+        rm $INI_FILENAME
+        echo "The file $INI_FILENAME could not be decrypted."
+        exit 1
+    fi
 
-elif [[ "$2" = "encrypt" ]]
+elif [[ "$ACTION" = "encrypt" ]]
 then
-	if [ ! -f "$INI_FILENAME" ]
-	then
-		echo "Nothing to encrypt. There must be a $INI_FILENAME in this folder"
-		exit 1
-	fi
+    #check if ini file exists
+    if [ ! -f "$INI_FILENAME" ]
+    then
+        echo "Nothing to encrypt. There must be a $INI_FILENAME in this folder"
+        exit 1
+    fi
 
-	if [ -f $INI_FILENAME.gpg ]
-	then
-		rm $INI_FILENAME.gpg
-	fi
+    #check if recipients file exists
+    if [ ! -f "$RECIPIENTS_FILE" ]
+    then
+        echo "The file $RECIPIENTS_FILE does not exist. You can specify custom recipients file with the -r option."
+        exit 1
+    fi
 
-	recepstring=""
-	for recepient in "${RECEPIENTS[@]}"
-		do
-			recepstring+=" -r "
-			recepstring+=$recepient
-		done
-	gpg -e $recepstring $INI_FILENAME
-	rm $INI_FILENAME
-	echo "SUCCESS! The file was encrypted for: ${RECEPIENTS[@]}"
+
+    if [ -f $INI_FILENAME.gpg ]
+    then
+        rm $INI_FILENAME.gpg
+    fi
+
+
+    while read LINE
+    do
+        if [ ! -z "$LINE" ]
+        then
+            RECIPIENTS+=("$LINE")
+        fi
+    done < $RECIPIENTS_FILE
+
+    RECIPIENT_STRING=""
+    for RECIPIENT in "${RECIPIENTS[@]}"
+    do
+        RECIPIENT_STRING+=" -r "
+        RECIPIENT_STRING+=$RECIPIENT
+    done
+
+    $(gpg -e $RECIPIENT_STRING $INI_FILENAME)
+    RET_CODE=$?
+    if [ "$RET_CODE" = 0 ]
+    then
+        rm $INI_FILENAME
+        echo "SUCCESS! The file $INI_FILENAME was encrypted for: ${RECIPIENTS[@]}"
+        exit
+    else
+        echo "Could not encrypt file $INI_FILENAME."
+        exit 1
+    fi
 fi
 
