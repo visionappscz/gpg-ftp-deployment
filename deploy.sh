@@ -7,9 +7,10 @@ RECIPIENTS=()
 RECIPIENTS_FILE="deployment.recipients"
 TEST_OPTION_STRING=""
 COMMANDS=("upload" "encrypt" "decrypt")
+HELP_TEXT="Usage: deploy.sh [options] environment action"
 
 # parse options
-while getopts :r:t opt
+while getopts :r:th opt
 do
     case $opt in
         r)
@@ -17,6 +18,10 @@ do
             ;;
         t)
             TEST_OPTION_STRING="--test"
+            ;;
+        h)
+            echo $HELP_TEXT
+            exit
             ;;
         \?)
             echo "Invalid option: -$OPTARG"
@@ -32,7 +37,7 @@ done
 # check if the required positional arguments are present
 if [ $(( $# - $OPTIND )) -lt 1 ]
 then
-    echo "Usage: deploy.sh [options] environment action"
+    echo $HELP_TEXT
     exit 1
 fi
 
