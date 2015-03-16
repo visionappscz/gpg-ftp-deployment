@@ -6,6 +6,6 @@
         }
     ],
 	"require": {
-		"dg/ftp-deployment": "1.3"
+		"dg/ftp-deployment": "~2.1"
 	}
 }

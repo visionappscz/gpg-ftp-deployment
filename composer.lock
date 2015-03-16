@@ -1,28 +1,40 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "becc3fc91e0482a7da31ed5c7b858770",
+    "hash": "bf76ec9d2d821cf43f327c6a8ce0dcb8",
     "packages": [
         {
             "name": "dg/ftp-deployment",
-            "version": "v1.3",
+            "version": "v2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/ftp-deployment.git",
-                "reference": "2e201715dfc75b0ee303051c96c396a3f03830f2"
+                "reference": "88adcaf168a42b3e99900e386b0269280ddc790a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/2e201715dfc75b0ee303051c96c396a3f03830f2",
-                "reference": "2e201715dfc75b0ee303051c96c396a3f03830f2",
+                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/88adcaf168a42b3e99900e386b0269280ddc790a",
+                "reference": "88adcaf168a42b3e99900e386b0269280ddc790a",
                 "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "nette/tester": "~1.3"
             },
             "bin": [
                 "Deployment/deployment"
             ],
-            "type": "tool",
+            "type": "project",
+            "autoload": {
+                "classmap": [
+                    "Deployment/"
+                ]
+            },
             "license": [
                 "BSD-3-Clause",
                 "GPL-2.0",
@@ -38,29 +50,22 @@
             "homepage": "https://github.com/dg/ftp-deployment",
             "keywords": [
                 "deployment",
-                "ftp"
+                "ftp",
+                "ssh"
             ],
             "support": {
-                "source": "https://github.com/dg/ftp-deployment/tree/v1.3",
+                "source": "https://github.com/dg/ftp-deployment/tree/v2.1",
                 "issues": "https://github.com/dg/ftp-deployment/issues"
             },
-            "time": "2014-03-10 18:34:58"
+            "time": "2015-01-25 16:18:14"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
 }
