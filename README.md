@@ -3,27 +3,31 @@ gpg-ftp-deployment
 
 A wrapper script for ftp-deployment tool.
 
-The aim of this script is to provide ondemand encryption and decryption of credentials for use by the ftp-deployment tool. Once encrypted the files can then by shared over git or such.
+The aim of this script is to provide ondemand encryption and decryption of credentials for use by the ftp-deployment tool. Once encrypted the files can then by shared over git and such.
 
-The encryption is handled by gpg and all who are expected to use the encrypted file must have their certificate added at encryption time. The recepients of the encrypted files are listed in file named deployment.recipients at the same location as the deployment configuration files. A custom location of the recipients file can be entered with the -r option.
+The encryption is handled by gpg and all who are expected to use the encrypted file must have made their certificate available at encryption time. The certificates to use during encryption are specified by email addresses in file named deployment.recipients at the same location as the deployment configuration files.
 
-This script assumes taht the deployment configuration files are named in the following manner: "deployment.<name_of_environment>.ini[.gpg]". The name of the environment is passed in as a first argument, the desired action as a second argument.
+This script assumes that the deployment configuration files are named in the following manner: "deployment.<name_of_environment>.ini[.gpg]".
+
+The name of the environment is passed in as a first argument, the desired action as a second argument.
 
 The upload action can be run in test mode with the -t option. No files will be changed, but it will be shown what would have had happend.
 
+
 DEPENDENCIES:
 
-php, gpg, composer
+php (with ssh2), gpg, composer
+
 
 INSTALLATION:
 
-1/ Put it into your favorite folder for scripts and such
+1/ Clone this repository
 
     git clone git@github.com:mbohal/gpg-ftp-deployment.git
 
-2/ Navigate to where the deploy.sh script is located
+2/ Navigate to the root of the project (where deploy.js is)
 
-    cd folder_where_the_script_is
+    cd /path/to/project
 
 3/ Install dependencies
 
