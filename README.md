@@ -33,6 +33,12 @@ INSTALLATION:
 
     composer install
 
+On some systems, namely Mac OSX, the correct path to the istalation script can not be resolved automatically. To fix it:
+```
+$ cd /absolute/path/to/dir/containing/the/deploy.sh/script
+$ sed -i "s|^WRAPPER_DIR.*$|WRAPPER_DIR=$(pwd)|" deploy.sh
+```
+
 
 USAGE:
 
