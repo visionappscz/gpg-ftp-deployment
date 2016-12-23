@@ -3,7 +3,7 @@ gpg-ftp-deployment
 
 A wrapper script for ftp-deployment tool.
 
-The aim of this script is to provide ondemand encryption and decryption of credentials for use by the ftp-deployment tool. Once encrypted the files can then by shared over git and such.
+The aim of this script is to provide on-demand encryption and decryption of credentials for use by the ftp-deployment tool. Once encrypted the files can then by shared over git and such.
 
 The encryption is handled by gpg and all who are expected to use the encrypted file must have made their certificate available at encryption time. The certificates to use during encryption are specified by email addresses in file named deployment.recipients at the same location as the deployment configuration files.
 
@@ -23,7 +23,7 @@ INSTALLATION:
 
 1/ Clone this repository
 
-    git clone git@github.com:mbohal/gpg-ftp-deployment.git
+    git clone git@github.com:visionappscz/gpg-ftp-deployment.git
 
 2/ Navigate to the root of the project (where deploy.js is)
 
@@ -33,7 +33,7 @@ INSTALLATION:
 
     composer install
 
-On some systems, namely Mac OSX, the correct path to the istalation script can not be resolved automatically. To fix it:
+On some systems, namely Mac OSX, the correct path to the installation script can not be resolved automatically. To fix it:
 ```
 $ cd /absolute/path/to/dir/containing/the/deploy.sh/script
 $ sed -i "s|^WRAPPER_DIR.*$|WRAPPER_DIR=$(pwd)|" deploy.sh
@@ -59,6 +59,6 @@ Decrypt file with production environment credentials (requires file: deployment.
     deploy.sh production decrypt
 
 
-Encrypt file with testing environment credentials (requires files: deployment.testing.ini and deployment.recepients):
+Encrypt file with testing environment credentials (requires files: deployment.testing.ini and deployment.recipients):
 
     deploy.sh testing encrypt
