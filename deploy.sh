@@ -2,7 +2,7 @@
 
 
 WRAPPER_DIR=$(dirname $(readlink -e $BASH_SOURCE))
-SCRIPT_PATH="$WRAPPER_DIR/vendor/dg/ftp-deployment/Deployment/deployment.php"
+SCRIPT_PATH="$WRAPPER_DIR/vendor/dg/ftp-deployment/src/deployment.php"
 RECIPIENTS=()
 RECIPIENTS_FILE="deployment.recipients"
 TEST_OPTION_STRING=""
@@ -157,4 +157,3 @@ then
         exit 1
     fi
 fi
-

@@ -1,22 +1,22 @@
 {
-	"name": "visionappscz/gpg-ftp-deployment",
-	"type": "library",
-	"description": "A wrapper script for ftp-deployment tool",
-	"keywords": ["gpg", "ftp", "deployment"],
-	"license": "BSD-3-Clause",
-	"authors": [
-		{
-		"name": "VisionApps s.r.o.",
-		"homepage": "https://www.visionapps.cz"
-		}
-	],
-	"repositories": [
-        	{
-        		"type": "vcs",
-    			"url": "git@github.com:dg/ftp-deployment.git"
-        	}
-	],
-    	"require": {
-		"dg/ftp-deployment": "~2.1"
-	}
+    "name": "visionappscz/gpg-ftp-deployment",
+    "type": "library",
+    "description": "A wrapper script for ftp-deployment tool",
+    "keywords": ["gpg", "ftp", "deployment"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+        "name": "VisionApps s.r.o.",
+        "homepage": "https://www.visionapps.cz"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:dg/ftp-deployment.git"
+        }
+    ],
+        "require": {
+        "dg/ftp-deployment": "~2.1"
+    }
 }
