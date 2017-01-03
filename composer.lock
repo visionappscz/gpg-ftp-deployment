@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fd5eb0ef6733e9872acfba9158c3d28e",
-    "content-hash": "8ee16824c02d3c9b4c43c629c315ecc8",
+    "hash": "fb59e02ec1e41676dcadc1c1d74e64d2",
+    "content-hash": "f0af8a6f45bdeddd31d392f02bb1d863",
     "packages": [
         {
             "name": "dg/ftp-deployment",
